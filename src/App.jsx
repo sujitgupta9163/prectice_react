@@ -89,6 +89,21 @@ const App = ()=> {
   const [input , setInput] = useState("")
   const [fontSize , setFontsize] = useState(30);
   const [color , setColor] = useState("red")
+  const [value , setValue] = useState("");
+  const [data , setData] = useState([]);
+
+
+  const addist = ()=>{
+    if(value.length === 0){
+      console.log("input is required")
+    }
+    else{
+      setData([
+        ...data,
+        value
+      ])
+    }
+  }
   return (
     <div style={{
       minHeight : '100vh',
@@ -210,6 +225,51 @@ const App = ()=> {
           marginTop : 20,
           borderRadius : 10
         }}/>
+
+
+        <div>
+          <h2>Daynamic list (Using useState & Array)</h2>
+          <input onChange={(e)=>setValue(e.target.value)
+          }
+            type="text" 
+            placeholder = "Enter you List"
+            style={{
+            width : '50%',
+            padding : "10px",
+            borderRadius : 5,
+            
+            
+          }}/>
+          <button onClick={addist}
+          style={{
+            padding : 12,
+            width : 150,
+            background : "orange",
+            fontWeight : 'bold',
+            marginLeft : 10,
+            border : 'none',
+            cursor : 'pointer'
+          }}
+          >Add</button>
+
+              {
+                data.map((item , index)=>(
+                  <li key={index}
+                  
+                  style={{
+                    font : 20,
+                    marginTop : 10,
+                    listStyle : "none",
+                    paddingLeft : 10,
+                  
+                    width : "40%",
+                    padding : 6,
+                    border : '1px solid black'
+                  }}
+                  >{item}</li>
+                ))
+              }
+        </div>
       </div>
       
     </div>
